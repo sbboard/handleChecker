@@ -7,17 +7,11 @@ var fs = require('fs'),
 
 var T = new Twit(config);
 
-//checks to see if account has tweeted
-T.get('search/tweets', { screen_name: 'buffum' }, function(err, data, response) {
-    console.log(data)
-})
-
-//checks to see if account has any followers
-T.get('followers/ids', { screen_name: 'buffum' },  function (err, data, response) {
-    console.log(data)
-})
-
-//checks to see if account is following anyone
-T.get('following/ids', { screen_name: 'buffum' },  function (err, data, response) {
-    console.log(data)
+T.get('users/lookup', { screen_name: 'buffum' },  function (err, data, response) {
+    if(data.hasOwnProperty('errors') && data.errors[0].code == 17){
+        console.log("doesn't exist")
+    }
+    else{
+        console.log(data)
+    }
 })
