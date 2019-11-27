@@ -38,23 +38,23 @@ function checkStatus(name){
 
 function sendEmail(){
     return new Promise(resolve => {
-        let message = "<table style='border: 1px solid black; width: 100%'>"
+        let message = "<table style='border: 1px solid black; width: 50%'>"
         let plainMsg = ""
-        for(j = 0; j<bigArray.length; j++){
-            message += `<tr><td style='border: 1px solid black'><b>${bigArray[i].name}</b></td>`
+        for(i = 0; i<bigArray.length; i++){
+            message += `<tr><td style='border: 1px solid black'><b>@${bigArray[i].name}</b></td>`
             plainMsg += `${bigArray[i].name}: `
             if(bigArray[i].status == true){
-                message += `<tr><td style='border: 1px solid black;color:green'><b>${bigArray[i].status}</b></td>`
+                message += `<td style='border: 1px solid black;color:green'><b>FREE!</b></td></tr>`
                 plainMsg += `${bigArray[i].status}`
             }
             else{
-                message += `<tr><td style='border: 1px solid black;color:red'><b>${bigArray[i].status}</b></td>`
+                message += `<td style='border: 1px solid black;color:red'><b>Taken...</b></td></tr>`
                 plainMsg += `${bigArray[i].status}`
             }
         }
         message += "</table>"
         transporter.sendMail({
-            from: '"Jolly Boy" <twitter@gang-fight.com>', // sender address
+            from: '"Twitter Handle Bot" <twitter@gang-fight.com>', // sender address
             to: "colin.buffum@gmail.com", // list of receivers
             subject: "Twitter Handle Update", // Subject line
             text: plainMsg, // plain text body
@@ -69,6 +69,7 @@ async function runScript(){
         await checkStatus(names[i])
     }
     await sendEmail()
+    console.log("email sent")
 }
 
 runScript()
