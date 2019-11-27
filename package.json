@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sbboard/handleChecker#readme",
   "dependencies": {
+    "nodemailer": "^6.3.1",
     "twit": "^2.2.11"
   }
 }
